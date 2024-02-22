@@ -3,25 +3,24 @@
 
 int search(int numbers[], int low, int high, int value) 
 {
-	// If we have reached the middle index, return the index if it is equal to the value; otherwise, return -1.
-	if (low == high && numbers[low] == value) {
-		return low;
-	}
-	else if (low == high) {
+	// Middle Index
+	int mid = low + ((high - low) / 2);
+
+	// If the index between low and high does not equal the value and there is no more middle values, return -1
+	if (numbers[mid] != value && (mid == low || mid == high)) {
 		return -1;
 	}
 
-	// Check the low and high index for the value and return the appropriate index is our value is stored there.
-	if (numbers[low] == value) {
-		return low;
+	// If the middle value is lower than the search value, check the upper half of the array
+	if (numbers[mid] < value) {
+		return search(numbers, mid, high, value);
 	}
-	else if (numbers[high] == value) {
-		return high;
+	// Else if the middle value is higher than the search value, check the lower half of the array
+	else if (numbers[mid] > value) {
+		return search(numbers, low, mid, value);
 	}
-	// Otherwise, continue the search by incrementing low and decrementing high.
-	else {
-		return search(numbers, low + 1, high - 1, value);
-	}
+	// If none of the previous conditions are true then mid MUST be the index with the search value
+	return mid;
 }
 
 void printArray(int numbers[], int sz)
