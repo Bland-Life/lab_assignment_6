@@ -10,6 +10,9 @@ int search(int numbers[], int low, int high, int value)
 	if (numbers[mid] != value && (mid == low || mid == high)) {
 		return -1;
 	}
+	else if (low > high) {
+		return -1;
+	}
 
 	// If the middle value is lower than the search value, check the upper half of the array
 	if (numbers[mid] < value) {
