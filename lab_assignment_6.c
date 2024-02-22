@@ -6,7 +6,7 @@ int search(int numbers[], int low, int high, int value)
 	// Middle Index
 	int mid = low + ((high - low) / 2);
 
-	// If the index between low and high does not equal the value and there is no more middle values, return -1
+	// If the index between low and high does not equal the value and there are no more middle values, return -1
 	if (numbers[mid] != value && (mid == low || mid == high)) {
 		return -1;
 	}
